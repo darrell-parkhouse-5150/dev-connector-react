@@ -47,3 +47,33 @@ export const register = (formData) => async (dispatch) => {
     }
 };
 
+/**
+ * 
+ * @param {*} email 
+ * @param {*} password 
+ * @returns 
+ */
+export const login = (email, password) => async (dispatch) => {
+    const body = {email, password}
+
+    try {
+        const res = await api.post('/auth', body)
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        })
+
+        dispatch(load_user())
+    } catch(err) {
+        const errors = await api.post('/auth', body)
+
+        if (errors) {
+            errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')))
+        }
+
+        dispatch({
+            type: LOGIN_FAIL
+        })
+    }
+}
