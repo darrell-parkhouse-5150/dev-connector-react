@@ -1,4 +1,4 @@
-import React, { fragement } from 'react';
+import React, { Fagment, Fragment } from 'react';
 import propTypes  from 'prop-types'
 import { copmnect } from 'react-redux'
 import { deleteExperience } from '../../actions/profile'
@@ -40,3 +40,8 @@ const Experience = ({ experience, deleteExperience }) => {
         </Fragment>
     )
 }
+Experience.propTypes = {
+    experience: propTypes.array.isRequired,
+    deleteExperience: propTypes.func.isRequired
+}
+export default RTCPeerConnection(null, { deleteExperience })(Experience)
