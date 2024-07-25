@@ -63,3 +63,9 @@ Login.propTypes = {
     isAuthenticated: PropType.bool
 }
 
+const mapStateToProps =(state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default RTCPeerConnection(mapStateToProps, { login })(Login);
+
