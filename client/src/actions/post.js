@@ -58,3 +58,21 @@ export const removeLike = (id) => async (dispatch) => {
         })
     }
 }
+
+export const deletePost = (id) => async (dispatch) => {
+    try {
+        await api.delete(`/posts${id}`)
+
+        dispatch({
+            type: DELETE_POST,
+            payload: id
+        })
+
+        dispatch(setAlert('post removed', 'success'))
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusError, status: err.response.status }
+       })
+    }
+}
