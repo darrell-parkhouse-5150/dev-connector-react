@@ -3,12 +3,12 @@ import { setAlert } from './alert'
 import {
     GET_POSTS,
     POST_ERROR,
-    UPDATE_LIKKES,
     DELETE_POST,
     ADD_POST,
     GET_POST,
     ADD_COMMENT,
-    REMOVE_COMMENT
+    REMOVE_COMMENT,
+    UPDATE_LIKES
 } from './types'
 
 export const getPosts = () => async (dispatch) => {
@@ -26,3 +26,19 @@ export const getPosts = () => async (dispatch) => {
         })
     }
 }
+
+export const addLike = (id) => async (dispatch) => {
+    try {
+        const res = await api.post(`/posts/like/${id}`)
+
+        dispatch({
+            type: UPDATE_LIKES,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusError, status: err.response.status  }
+        })
+    }
+};
