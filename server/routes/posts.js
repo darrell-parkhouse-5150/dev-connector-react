@@ -30,4 +30,14 @@ router.post('/', auth, check('text', 'text is required').notEmpty(), async (req,
         res.status(500).send('server error');
     }
 })
+
+router.get('/', auth, async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ date: -1 })
+        req.json(posts);
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send('internal server error')
+    }
+})
 module.exports = router
