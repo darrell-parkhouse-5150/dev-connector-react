@@ -107,4 +107,21 @@ export const getPost = (id) => async (dispatch) => {
         })
     }
 }
+export const addComment = (postId, formData) => async (dispatch) => {
+    try {
+        const res = await api.post(`/posts/comments/${postId}`, formData);
+
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Comment added', 'success'))
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
 
