@@ -6,6 +6,7 @@ import Post from './models/Post'
 import User from './models/User'
 
 import CheckObjId from '../middleware/checkObjId'
+import { checkout } from '../src'
 
 router.post('/', auth, check('text', 'text is required').notEmpty(), async (req, res) => {
     const errors = validationResult(req);
@@ -38,6 +39,19 @@ router.get('/', auth, async (req, res) => {
     } catch (error) {
         console.error(error.message)
         res.status(500).send('internal server error')
+    }
+})
+router.get('/:id', auth, CheckObjId, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+
+        if (!post)
+            return res.status(404).json({ msg: 'post not found' })
+
+        res.json(post)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('intneral server error')
     }
 })
 module.exports = router
