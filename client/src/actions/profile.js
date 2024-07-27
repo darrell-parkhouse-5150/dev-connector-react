@@ -43,3 +43,19 @@ export const getProfiles = () => async (dispatch) => {
         })
     }
 }
+export const getProfileById = (userId) => async (dispatch) => {
+    try {
+        const res = await api.get(`/profile/user/${userId}`)
+
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+
