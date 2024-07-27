@@ -76,3 +76,19 @@ export const deletePost = (id) => async (dispatch) => {
        })
     }
 }
+
+export const AddPost = (formData) => async (dispatch) => {
+    try {
+        const res = await api.post('/posts', formData);
+
+        dispatch({
+            type: ADD_POST,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
