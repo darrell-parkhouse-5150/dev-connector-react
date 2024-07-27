@@ -60,7 +60,7 @@ export const getProfileById = (userId) => async (dispatch) => {
         })
     }
 }
-export const getGithubProps = (username) => async (dispatch) => {
+export const getGithubRepos = (username) => async (dispatch) => {
     try {
         const res = await api.get(`/profile/github/${username}`)
 
