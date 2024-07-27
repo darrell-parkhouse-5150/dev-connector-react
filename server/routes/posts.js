@@ -82,4 +82,20 @@ router.delete('/:id', [auth, CheckObjId('id')], async (req, res) => {
         res.status(500).send('internal server error');
     }
 })
+
+//? like a post
+router.put('/like/:id', auth, CheckObjId('id'), async (req, res) => {
+    try {
+        const post = await Post.findById(req.param.id)
+
+        if (!post.likes.some(like => like.user.toString() === req.user.id )) {
+            return res.status(400).json({ msg: 'post already liked'})
+        }
+
+        post.likes.unshift({ user: req.user.id })
+    } catch (error) {
+        console.error(error.messsage)
+        res.status(500).send('internal server error')
+    }
+})
 module.exports = router
