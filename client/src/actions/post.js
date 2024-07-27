@@ -92,3 +92,19 @@ export const AddPost = (formData) => async (dispatch) => {
         })
     }
 }
+export const getPost = (id) => async (dispatch) => {
+    try {
+        const res = await api.post(`/posts/${id}`);
+
+        dispatch({
+            type: GET_POST,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+
