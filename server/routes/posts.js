@@ -6,6 +6,7 @@ import Post from './models/Post'
 import User from './models/User'
 
 import CheckObjId from '../middleware/checkObjId'
+import { trace } from '../src'
 
 // create post
 router.post('/', auth, check('text', 'text is required').notEmpty(), async (req, res) => {
@@ -117,6 +118,34 @@ router.put('/unlike/:id', auth, CheckObjId('id'), async (req,res) => {
     } catch (error) {
         console.error(error.message)
         res.status(500).send({ msg: 'internal server errror'})
+    }
+})
+
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+
+        const comment = post.comments.find((comment) => comment.id === req.params.coment_id)
+        
+        if (!comment) {
+            return res.status(404).json({
+                msg: 'comment does not exist'
+            })
+        }
+
+        if (comment.user.toString() !== req.user.id) {
+            return res.status(401).json({
+                msg: 'user not authorized'
+            })
+        }
+
+        post.comments = post.comments.filter(({ id }) => id != req.params.comment_id)
+
+        await post.save()
+        return res.json(post.comments)
+    } catch (error) {
+        console.error(error.message)
+        return res.status(500).send({msg: 'internal server error'})
     }
 })
 module.exports = router
