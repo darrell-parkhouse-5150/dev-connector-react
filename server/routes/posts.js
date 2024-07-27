@@ -6,8 +6,8 @@ import Post from './models/Post'
 import User from './models/User'
 
 import CheckObjId from '../middleware/checkObjId'
-import { checkout } from '../src'
 
+// create post
 router.post('/', auth, check('text', 'text is required').notEmpty(), async (req, res) => {
     const errors = validationResult(req);
 
@@ -32,6 +32,7 @@ router.post('/', auth, check('text', 'text is required').notEmpty(), async (req,
     }
 })
 
+//? get all posts
 router.get('/', auth, async (req, res) => {
     try {
         const posts = await Post.find().sort({ date: -1 })
@@ -41,6 +42,8 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send('internal server error')
     }
 })
+
+//? get post by id
 router.get('/:id', auth, CheckObjId, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
@@ -52,6 +55,31 @@ router.get('/:id', auth, CheckObjId, async (req, res) => {
     } catch (error) {
         console.error(error.message);
         res.status(500).send('intneral server error')
+    }
+})
+
+//? delete a post
+router.delete('/:id', [auth, CheckObjId('id')], async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(404).send({
+                msg: 'post not found'
+            })
+        }
+
+        if (post.user.toString() !== req.user.id) {
+            return res.status(401).send({
+                msg:'user not authorized'
+            })
+        }
+
+        await post.remove();
+        res.json({ msg: 'post removed' })
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send('internal server error');
     }
 })
 module.exports = router
