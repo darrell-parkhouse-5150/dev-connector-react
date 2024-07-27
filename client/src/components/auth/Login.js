@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import propTypes from 'prop-types'
 import { login } from '../../actions/auth'
+import * as propTypes from "prop-types";
 
 const Login = ({ login, isAuthenticated }) => {{
     const [formData, setFormData] = useState({
@@ -27,9 +27,9 @@ const Login = ({ login, isAuthenticated }) => {{
 
     return (
         <section className="container">
-            <h1 class="large text-primary">Sign in</h1>
+            <h1 className="large text-primary">Sign in</h1>
             <p className="lead">
-                <i class="fas fa-user" /> Sign into your account
+                <i className="fas fa-user" /> Sign into your account
             </p>
             <form className="form" onSubmit={onSubmit}>
                 <div className="form-group">
@@ -63,7 +63,7 @@ const Login = ({ login, isAuthenticated }) => {{
 
 Login.propTypes = {
     login: propTypes.func.isRequired,
-    isAuthenticated: PropType.bool
+    isAuthenticated: propTypes.bool
 }
 
 const mapStateToProps =(state) => ({
