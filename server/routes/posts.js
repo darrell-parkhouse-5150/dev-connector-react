@@ -98,4 +98,25 @@ router.put('/like/:id', auth, CheckObjId('id'), async (req, res) => {
         res.status(500).send('internal server error')
     }
 })
+
+//? unlike a post
+router.put('/unlike/:id', auth, CheckObjId('id'), async (req,res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+
+        if (!post.likes.some(like => like.user.toString() ===  req.user.id)) {
+            return res.status(400).json({
+                msg: 'post has not yet been liked'
+            })
+        }
+
+        post.likes = post.likes.filter(({ user }) => user.toString() !== req.user.id)
+
+        await post.save()
+        return res.json(post.likes)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send({ msg: 'internal server errror'})
+    }
+})
 module.exports = router
