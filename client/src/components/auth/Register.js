@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import { connect } from 'rect-redux'
 import { Link, Navigate } from 'react-router-dom'
 import { setAlert } from '../../actions/alert'
@@ -8,7 +8,7 @@ import propTypes from 'prop-types'
 const Register = ({ setAlert, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         name: '',
-        emai: '',
+        email: '',
         password: '',
         confirmPass: ''
     });
