@@ -29,6 +29,8 @@ export const getCurrentProfile = () => async (dispatch) => {
     }
 }
 export const getProfiles = () => async (dispatch) => {
+    dispatch({ type: CLEAR_PROFILE})
+
     try {
         const res = await api.get('/profile/')
 
@@ -52,6 +54,42 @@ export const getProfileById = (userId) => async (dispatch) => {
             payload: res.data
         })
     } catch (error) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+export const getGithubProps = (username) => async (dispatch) => {
+    try {
+        const res = await api.get(`/profile/github/${username}`)
+
+        dispatch({
+            type: GET_REPOS,
+            payload: res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: NO_REPOS
+        })
+    }
+}
+
+export const createProfile = (formData, edit = false) => async (dispatch) => {
+    try {
+        const res = await api.post('/profile', formData)
+
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert(edit ? "profile updated" : 'profile created', 'success'))
+    } catch (error) {
+        const errors = error.response.data.errors;
+        if (errors) 
+            errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')))
+        
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
