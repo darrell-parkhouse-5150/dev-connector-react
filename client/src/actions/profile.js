@@ -96,4 +96,26 @@ export const createProfile = (formData, edit = false) => async (dispatch) => {
         })
     }
 }
+export const addExperience = (formData) => async (dispatch) => {
+    try {
+        const res = await api.post('/profile/experience', formData)
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('experience added', 'success'));
+        return res.data
+    } catch (error) {
+        const errors = error.response.data.errors;
+        if (errors) 
+            errors.forEach((err) => dispatch(setAlert(err.msg, 'danger')))
+        
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
 
