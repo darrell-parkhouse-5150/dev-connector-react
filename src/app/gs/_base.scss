@@ -1,0 +1,48 @@
+@import "variables";
+@import "mixins";
+.row,
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-name {
+    border: 0;
+}
+
+label {
+    display: block;
+}
+
+//.btn-group {
+//    margin-left: auto;
+//    margin-top: 20px;
+//    display: flex;
+//    column-gap: 20px;
+//
+//    .btn-danger {
+//        @include btn('small', 'danger');
+//    }
+//
+//    .btn-primary {
+//        @include btn('primary', 'primary');
+//    }
+//
+//    .btm-secondary {
+//        @include btn('small', 'secondary');
+//    }
+//
+//}
+
+.calendar {
+    z-index: 1000;
+}
+
+projects {
+    display: none;
+}
+
+
+
