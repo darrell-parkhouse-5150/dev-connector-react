@@ -1,0 +1,100 @@
+$blue:    #0d6efd !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+
+$clr-success: $green;
+$clr-warning: $yellow;
+$clr-primary: $blue;
+$clr-danger: $red;
+
+$blue-100: tint-color($blue, 80%);
+$blue-200: tint-color($blue, 60%);
+$blue-300: tint-color($blue, 40%);
+$blue-400: tint-color($blue, 20%);
+
+$blue-500: tint-color($blue, 0);
+
+$blue-600: shade-color($blue, 20%);
+$blue-700: shade-color($blue, 40%);
+$blue-800: shade-color($blue, 60%);
+$blue-900: shade-color($blue, 80%);
+
+$indigo-100: tint-color($indigo, 80%);
+$indigo-200: tint-color($indigo, 60%);
+$indigo-300: shade-color($indigo, 40%);
+$indigo-400: shade-color($indigo, 30%);
+$indigo-500: shade-color($indigo, 0);
+$indigo-600: shade-color($indigo, 20%);
+$indigo-700: shade-color($indigo, 40%);
+$indigo-800: shade-color($indigo, 60%);
+$indigo-900: shade-color($indigo, 80%);
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$grays: (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900,
+);
+
+$primary: $blue;
+$secondary: $gray-600;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-900;
+
+$theme-colors: (
+    "primary":      $primary,
+    "secondary":    $secondary,
+    "info":         $info,
+    "warning":      $warning,
+    "danger":       $danger,
+    "light":        $light,
+    "dark":         $dark
+);
+
+$clr-menu-bg: #2a2b2f;
+$clr-sidebar-bg: #222327;
+$clr-main-content: #1c1d22;
+$clr-card-bg: #292b31;
+
+$clr-muted-text: #919193;
+
+$base-input-border-radius: 6px;
+$base-button-border-radius: 6px;
+
+$clr-danger: #800000;
+$clr-btn-text: #fff;
+$clr-secondary-btn-text: #111;
+$clr-secondary-btn-border: #111;
+$clr-secondary-btn-bg: #fff;
+
+$clr-primary:purple;
+$btn-padding-x: .375rem;
+$btn-padding-y: .75rem;
