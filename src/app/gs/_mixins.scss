@@ -1,0 +1,7 @@
+@import "variables";
+@function tint-color($color, $weight) {
+    @return mix($clr-btn-text, $color, $weight);
+}
+@function shade-color($color, $weight) {
+    @return mix($clr-secondary-btn-text, $color, $weight);
+}
