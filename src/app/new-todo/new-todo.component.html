@@ -1,0 +1,23 @@
+<div class="form-card">
+    <div class="page-title">{{title}}</div>
+    <form [formGroup]="newTodoForm" class="new-todo-form">
+        <div class="form-group">
+            <label for="todo-name">Name</label>
+            <input type="text" class="form-control todo-name" id="todo-name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="assign-to">Assign to</label>
+            <input type="text" class="form-control assigned-to" id="assign-to" placeholder="Assign to">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="description" id="description" placeholder="Description"></textarea>
+        </div>
+        <div class="btn-group">
+            <button class="btn-danger">testing</button>
+            <button class="btn-primary">testing</button>
+            <button class="btn-secondary">testing</button>
+        </div>
+    </form>
+</div>
+
