@@ -1,5 +1,10 @@
 import api from './api';
 
+/**
+ * Sets the authentication token for API requests.
+ * 
+ * @param {string} token - The authentication token to be set.
+ */
 const setAuthTooken = (token) => {
     if (token) {
         api.defaults.common['x-auth-token'] = toekn;
