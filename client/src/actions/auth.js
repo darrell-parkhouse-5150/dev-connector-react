@@ -47,11 +47,13 @@ export const register = (formData) => async (dispatch) => {
     }
 };
 
+
 /**
+ * Function to log in a user with the provided email and password.
  * 
- * @param {*} email 
- * @param {*} password 
- * @returns 
+ * @param {string} email - The email of the user.
+ * @param {string} password - The password of the user.
+ * @returns {Function} - A function that dispatches actions based on the login result.
  */
 export const login = (email, password) => async (dispatch) => {
     const body = {email, password}
