@@ -21,9 +21,9 @@ const Login = ({ login, isAuthenticated }) => {{
         login(email, password)
     }
 
-    if (isAuthenticated) {
-        return <Navigate to="/dashboard" />
-    }
+    if (isAuthenticated)
+        return <Link to="/dashboard" />
+    
 
     return (
         <section className="container">
